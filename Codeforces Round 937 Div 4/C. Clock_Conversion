@@ -1,0 +1,130 @@
+ // Next is Last.
+#include<bits/stdc++.h>
+using namespace std;
+
+#define int                                                          long long
+#define mod                                                          1000000007
+#define all(v)                                                       v.begin(),v.end()
+#define rall(v)                                                      v.rbegin(),v.rend()
+#define pb                                                           push_back
+#define vec(arr,n)                                                   vector<int> arr(n); 
+#define vecw(arr)                                                    vector<int> arr; 
+#define inputvec(arr,n)                                              for(int i=0;i<n;i++) cin>>arr[i]; 
+#define max_of(arr)                                                  *max_element(arr.begin(),arr.end())
+#define min_of(arr)                                                  *min_element(arr.begin(),arr.end())
+#define count_of(arr,i)                                              count(arr.begin(),arr.end(),i)
+#define p(a,b)                                                       pair<a,b>
+#define dis(a)                                                       cout<<#a<<" = "<<a<<endl;
+#define print(a)                                                     cout<<a<<endl;
+#define fsort(arr)                                                   sort(arr.begin(),arr.end());
+#define rsort(arr)                                                 	sort(arr.rbegin(),arr.rend());
+#define reverse(arr)												               reverse(all(arr));
+#define sum_of(arr)                                                  accumulate(arr.begin(),arr.end(),(int)0)
+#define test                                                         int t; cin>>t; while(t--)
+
+
+
+int nCr(int n,int r){
+  // Complexity : O(r)  
+    if(r>n)
+      return 0;
+    if(r==0 || r==n)
+      return 1;
+    return nCr(n-1,r-1) + nCr(n-1,r);
+}
+
+bool isPrime(int n){
+
+   if(n<=1)
+      return false;
+
+   if(n==2 || n==3)
+      return true;
+
+   if(n%2==0 || n%3==0)
+      return false;
+
+   for(int i=5;i<=sqrt(n);i=i+6)
+      if(n%i==0 || n%(i + 2)==0)
+          return false;
+ 
+   return true; 
+}
+
+bool cmp(pair<int,int> a,pair<int,int> b){
+    if(a.first !=b.first){
+        return a.first< b.first;
+    }
+ 
+    return a.second > b.second;
+}
+
+void printarr(vector<int> arr){
+   for(auto i: arr){
+      cout<<i<<" ";
+   }
+   cout<<endl;
+}
+
+int FIB(int n) {
+    double phi = (1 + sqrt(5)) / 2;
+    return static_cast<int>(round(std::pow(phi, n) / sqrt(5)));
+}
+ 
+int Mex(vector<int> a){
+	
+  fsort(a);
+  
+  if(a[0] > 0) return 0;
+  
+  for(int i=1;i<(int)a.size();i++){
+    if(a[i] > a[i-1]+1){
+      return a[i-1]+1;
+    }
+  }
+  
+  return a.back() + 1;
+}
+
+int LCM(int a,int b){
+	int GCD=__gcd(a,b);
+	return (a/GCD)*b;
+}
+
+ 
+
+// --------------------------------------------------------------------------------
+
+void solve(){
+
+string s,t="";
+cin>>s;
+
+int k=0;
+for(int i=0;i<2;i++){
+    t+=s[i];
+}
+
+k=stoi(t);
+string q=to_string(k-12);
+string p=s.substr(2,s.size());
+if(k<12 && k!=0) cout<< s <<" "<<"AM"<<endl;
+else if(k-12 == 0){
+    cout<< s <<" "<<"PM"<<endl;
+}else if(k==0){
+    cout<<12<<p<<" "<<"AM"<<endl;
+}else{
+    if(q.size()==1) cout<<0;
+     cout<<k-12 <<p <<" "<<"PM"<<endl;
+}
+
+}
+
+// ---------------------------------------------------------------------------------
+signed main(){
+    ios_base::sync_with_stdio(false); cin.tie(NULL);
+
+   test{
+      solve();
+   }
+}
